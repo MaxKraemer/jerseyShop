@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import {ProductsService} from "../service/products.service";
+
 
 @Component({
   selector: 'app-products',
@@ -6,5 +8,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./products.component.css']
 })
 export class ProductsComponent {
+
+  constructor(public products: ProductsService) {}
 
 }
