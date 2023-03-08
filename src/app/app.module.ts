@@ -19,7 +19,9 @@ import { environment } from '../environments/environment';
 import { provideAuth,getAuth } from '@angular/fire/auth';
 import { provideDatabase,getDatabase } from '@angular/fire/database';
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
-import {RouterLink} from "@angular/router";
+import {RouterLink, RouterLinkActive} from "@angular/router";
+import {AppRoutingModule} from "./app-routing.module";
+import { HomeComponent } from './home/home.component';
 
 
 @NgModule({
@@ -36,6 +38,7 @@ import {RouterLink} from "@angular/router";
     BannerContainerComponent,
     PlayerContainerComponent,
     FooterComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
@@ -45,7 +48,9 @@ import {RouterLink} from "@angular/router";
     provideAuth(() => getAuth()),
     provideDatabase(() => getDatabase()),
     provideFirestore(() => getFirestore()),
-    RouterLink
+    RouterLink,
+    RouterLinkActive,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
