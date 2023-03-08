@@ -23,6 +23,8 @@ import {RouterLink, RouterLinkActive} from "@angular/router";
 import {AppRoutingModule} from "./app-routing.module";
 import { HomeComponent } from './home/home.component';
 import {CarouselModule} from "@coreui/angular";
+import {MatBadgeModule} from "@angular/material/badge";
+
 
 
 @NgModule({
@@ -52,7 +54,8 @@ import {CarouselModule} from "@coreui/angular";
         RouterLink,
         RouterLinkActive,
         AppRoutingModule,
-        CarouselModule
+        CarouselModule,
+        MatBadgeModule
     ],
   providers: [],
   bootstrap: [AppComponent]
