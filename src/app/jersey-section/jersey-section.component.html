@@ -5,8 +5,20 @@
   <div class="headline">
     <h3>Most Popular Jerseys</h3>
   </div>
-<!--  <div class="product-img">-->
-<!--    <img *ngFor="let jerseys of products.jerseyImages" src="{{jerseys.jersey}}" alt="">-->
-<!--  </div>-->
+  <div class="carousel-container">
+    <c-carousel (itemChange)="onItemChange($event)" [interval]="5000" transition="slide">
+      <c-carousel-inner>
+        <c-carousel-item *ngFor="let slide of slides">
+          <img
+            [src]="slide.src"
+            alt="{{slide.title}}"
+            class=""
+            loading="lazy"
+          />
+        </c-carousel-item>
+      </c-carousel-inner>
+    </c-carousel>
+
+  </div>
 </div>
 

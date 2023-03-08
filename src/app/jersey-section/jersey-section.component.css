@@ -21,6 +21,10 @@
   font-size: 60px;
   font-family: sans-serif;
 }
+.carousel-container {
+  display: flex;
+  justify-content: center;
+}
 
 .product-img {
   display: flex;
@@ -30,8 +34,7 @@
 }
 
 img {
-  width: 450px;
-  height: 450px;
+
   cursor: pointer;
 }
 
