@@ -1,7 +1,31 @@
-.product-img {
+.headline {
+  padding-left: 300px;
+  padding-top: 50px;
+}
+h3 {
+  font-size: 40px;
+}
+.product-container {
   display: flex;
-  justify-content: space-evenly;
-  padding-top: 100px;
-  padding-bottom: 100px;
+  justify-content: space-between;
   flex-wrap: wrap;
+  padding-left: 300px;
+  padding-right: 300px;
+  padding-top: 50px;
+}
+.product-information {
+  padding-bottom: 100px;
+}
+.product-img {
+  cursor: pointer;
+}
+@media (max-width: 1600px) {
+  .headline {
+    padding-left: 200px;
+    padding-top: 50px;
+  }
+  .product-container {
+    padding-left: 150px;
+    padding-right: 150px;
+  }
 }

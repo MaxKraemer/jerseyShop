@@ -7,8 +7,8 @@ export class ProductsService {
 
   public jerseyImages = [
     {
-      "jersey": "assets/img/23-fastbreak-jersey-city-edition_pi4900000_ff_4900361-a62a4ef6ad028d688904_full.webp",
-      "name" : "Brooklyn Nets City Jersey - Kevin Durant",
+      "jersey": "assets/img/ezgif.com-gif-maker.jpg",
+      "name" : "Phoenix Suns City Jersey - Kevin Durant",
       "price" : "95.00 €"
     },
     {
@@ -30,6 +30,18 @@ export class ProductsService {
     {
       "jersey": "assets/img/memphis-grizzlies-jordan-statement-edition-swingman-jersey-light-blue-ja-morant-unisex_ss4_p-13365099+u-u4sqa1sqwunvqigwjmfg+v-232c064df42446f3b652a652f051e9ec.webp",
       "name" : "Los Angeles Lakers City Jersey - Lebron James",
+      "price" : "95.00 €"},
+    {
+      "jersey": "assets/img/denver-nuggets-jordan-statement-edition-swingman-jersey-blue-nikola-jokic-unisex_ss4_p-13365083+u-wxs3f8kfictr5kxjzwuo+v-bfbde7130233452b848ec98f71289d9f.webp",
+      "name" : "Denver Nuggets City Jersey - Nikola Jokic",
+      "price" : "95.00 €"},
+    {
+      "jersey": "assets/img/23-swingman-jersey-city-edition_pi4758000_ff_4758941-9c5f474bf94de344a352_full.webp",
+      "name" : "New York Knicks City Jersey - R.J. Barrett",
+      "price" : "95.00 €"},
+    {
+      "jersey": "assets/img/23-swingman-jersey-city-edition_pi4758000_ff_4758952-ebb37463dd7a7b7dacf6_full.webp",
+      "name" : "Philadelphia 76ers City Jersey - Joel Embiid",
       "price" : "95.00 €"},
   ];
 
