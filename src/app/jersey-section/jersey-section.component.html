@@ -1,24 +1,13 @@
 <section class="sec1">
 </section>
 
-<div class="products-container" >
-  <div class="headline">
-    <h3>Most Popular Jerseys</h3>
-  </div>
-  <div class="carousel-container">
-    <c-carousel (itemChange)="onItemChange($event)" [interval]="5000" transition="slide">
-      <c-carousel-inner>
-        <c-carousel-item *ngFor="let slide of slides">
-          <img
-            [src]="slide.src"
-            alt="{{slide.title}}"
-            class=""
-            loading="lazy"
-          />
-        </c-carousel-item>
-      </c-carousel-inner>
-    </c-carousel>
+<div class="popular-jersey-title">
+  <h3>Most Popular Jerseys</h3>
+</div>
+<div class="jersey-container">
+  <div><img src="assets/img/ezgif.com-gif-maker.jpg" alt=""></div>
+  <div><img src="assets/img/23-swingman-jersey-city-edition_pi4758000_ff_4758898-1d5778c9b6c54148e18b_full.webp" alt=""></div>
+  <div><img src="assets/img/23-swingman-jersey-city-edition_pi4758000_ff_4758915-e830a7d84d7ccc6ef2ad_full.webp" alt=""></div>
 
-  </div>
 </div>
 

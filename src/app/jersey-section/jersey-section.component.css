@@ -5,36 +5,20 @@
   background-size: cover;
   background-position: center;
 }
-
-.products-container {
-  height: 800px;
-  background-color: white;
-}
-.headline {
-  font-weight: 600;
-  margin-bottom: 20px;
+.popular-jersey-title {
   text-align: center;
-  padding-top: 100px;
-}
+  padding-top: 50px;
+  padding-bottom: 50px;
 
-.headline h3 {
-  font-size: 60px;
-  font-family: sans-serif;
 }
-.carousel-container {
-  display: flex;
-  justify-content: center;
+.popular-jersey-title h3 {
+  font-size: 50px;
 }
-
-.product-img {
+.jersey-container {
   display: flex;
   justify-content: space-evenly;
-  padding-top: 100px;
-  padding-bottom: 100px;
 }
-
 img {
-
   cursor: pointer;
 }
 
