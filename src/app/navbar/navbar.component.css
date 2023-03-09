@@ -11,6 +11,12 @@ nav {
   box-sizing: border-box;
   transition: .3s;
 }
+nav h3{
+  margin-left: 60px;
+  font-size: 25px;
+  margin-top: 5px;
+
+}
 nav.black {
   background-color: rgba(0, 0, 0, .8);
 }

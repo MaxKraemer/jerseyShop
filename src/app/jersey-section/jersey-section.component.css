@@ -5,6 +5,10 @@
   background-size: cover;
   background-position: center;
 }
+.image-title{
+  display: flex;
+  justify-content: center;
+}
 .popular-jersey-title {
   text-align: center;
   padding-top: 50px;
