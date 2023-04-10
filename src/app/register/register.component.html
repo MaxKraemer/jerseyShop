@@ -1,0 +1,41 @@
+<div class="register-dialog">
+  <div class="register-headline">
+    <div class="register-title">
+      <h2>Register</h2>
+    </div>
+  <div class="close-icon">
+    <mat-icon (click)="dialogClose()">close</mat-icon>
+  </div>
+  </div>
+  <div class="line">
+  </div>
+  <div class="register-field">
+    <form [formGroup]="registerUser">
+      <div class="register-name-field">
+        <mat-form-field appearance="outline">
+          <mat-label>First Name</mat-label>
+          <input formControlName="firstName" matInput>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Last Name</mat-label>
+          <input formControlName="lastName" matInput>
+        </mat-form-field>
+      </div>
+      <div class="register-secure-field">
+        <mat-form-field appearance="outline">
+          <mat-label>E-Mail</mat-label>
+          <input formControlName="email" matInput>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Password</mat-label>
+          <input formControlName="password" type="password" matInput>
+        </mat-form-field>
+      </div>
+    </form>
+  </div>
+  <div class="register-btn">
+    <button (click)="signUp()">
+      <span>Create your Account</span>
+    </button>
+  </div>
+</div>

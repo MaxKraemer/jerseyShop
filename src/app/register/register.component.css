@@ -1,0 +1,73 @@
+.register-dialog {
+  overflow: hidden;
+  width: 700px;
+  height: 450px;
+  font-family: 'Lato', sans-serif;
+}
+mat-icon {
+  cursor: pointer;
+}
+.register-field{
+  padding-top: 40px;
+}
+.register-headline {
+  display: flex;
+  justify-content: space-between;
+  margin: 0px 40px 0px 40px;
+  padding-top: 25px;
+}
+.close-icon{
+  display: flex;
+  justify-content: flex-end;
+}
+.line {
+  border: 1px solid lightgray;
+  margin-top: 10px;
+}
+input {
+  height: 20px;
+  width: 100%;
+}
+.register-field{
+  display: flex;
+  justify-content: center;
+}
+.register-name-field {
+  display: flex;
+  padding-top: 30px;
+}
+.register-secure-field {
+  display: flex;
+}
+mat-form-field{
+  margin: 10px 10px 10px 10px;
+}
+h2 {
+  font-size: 30px;
+  font-weight: 600;
+  color: #000;
+  font-family: 'Lato', sans-serif;
+}
+p {
+  font-size: 14px;
+  color: #000;
+  font-family: 'Lato', sans-serif;
+}
+.register-btn {
+  display: flex;
+  justify-content: center;
+  padding-top: 20px;
+}
+button {
+  background-color: black;
+  border-radius: 5px;
+  height: 50px;
+  color: white;
+  border: none;
+  width: 80%;
+}
+button span{
+  font-size: 20px;
+  font-weight: 600;
+  font-family: 'Lato', sans-serif;
+}
