@@ -1,0 +1,38 @@
+.sec1 {
+  background-image: url(https://boardroom.tv/wp-content/uploads/2022/08/MicrosoftTeams-image-1.jpeg);
+  width: 100%;
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+}
+
+.web-headline {
+  color: black;
+  font-size: 3rem;
+  font-weight: 700;
+  text-align: center;
+  margin-top: 10%;
+  font-family: 'Lato', sans-serif;
+}
+
+.image-title{
+  display: flex;
+  justify-content: center;
+}
+.popular-jersey-title {
+  text-align: center;
+  padding-top: 100px;
+  padding-bottom: 50px;
+}
+.popular-jersey-title h3 {
+  font-size: 50px;
+  font-family: 'Lato', sans-serif;
+}
+.jersey-container {
+  display: flex;
+  justify-content: space-evenly;
+}
+img {
+  cursor: pointer;
+}
+
