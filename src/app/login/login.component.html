@@ -1,0 +1,31 @@
+<div class="register-dialog">
+  <div class="register-headline">
+    <div class="register-title">
+      <h2>Login</h2>
+    </div>
+    <div class="close-icon">
+      <mat-icon (click)="dialogClose()">close</mat-icon>
+    </div>
+  </div>
+  <div class="line">
+  </div>
+  <div class="register-field">
+    <form [formGroup]="loginForm">
+      <div class="register-name-field">
+        <mat-form-field appearance="outline">
+          <mat-label>Email</mat-label>
+          <input formControlName="email" matInput>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Password</mat-label>
+          <input formControlName="password" matInput type="password">
+        </mat-form-field>
+      </div>
+    </form>
+  </div>
+  <div class="register-btn">
+    <button (click)="loginUser()">
+      <span>Login</span>
+    </button>
+  </div>
+</div>
