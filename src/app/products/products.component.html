@@ -1,0 +1,23 @@
+<div class="headline">
+  <h3>Jerseys</h3>
+</div>
+<div class="product-container" *ngIf="products">
+  <div class="product-area" *ngFor="let product of products.jerseyImages">
+    <div class="product-img">
+      <img src="{{product.jersey}}" alt="">
+    </div>
+    <div class="product-information">
+    <div class="product-price">
+      <div>{{product.price}}</div>
+    </div>
+    <div class="product-name">
+      <div>{{product.name}}</div>
+    </div>
+      <div class="cart-btn" (click)="addToCart(product)">
+        <button>Add to Cart</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
