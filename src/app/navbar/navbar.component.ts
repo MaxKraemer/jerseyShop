@@ -19,6 +19,9 @@ export class NavbarComponent {
 
 constructor(public dialog: MatDialogModule, public matDialog: MatDialog, public cart: CartService, public auth: AuthService) {}
 
+  public get userLoggedIn() {
+    return this.auth.userLoggedIn;
+  }
 
   openDialog() {
    this.matDialog.open(RegisterComponent);
