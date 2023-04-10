@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "webshop-fdaec": {
+      "hosting": {
+        "jerseyShop": [
+          "webshop-fdaec"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "webshop-fdaec"
+  }
+}
