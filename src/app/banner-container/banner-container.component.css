@@ -1,0 +1,10 @@
+.banner-container {
+  padding-top: 100px;
+}
+
+.banner-container img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background-color: #eee;
+}

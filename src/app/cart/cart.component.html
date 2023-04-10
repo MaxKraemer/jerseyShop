@@ -1,0 +1,31 @@
+<div class="title-container">
+    <h3>Cart</h3>
+</div>
+<div class="product-title" routerLink="/products">
+  <mat-icon class="back-icon">arrow_back</mat-icon>
+  <span>Back to Products</span>
+</div>
+
+<div class="item-container">
+  <div class="cart-item" *ngFor="let jersey of jerseys; let index = index">
+    <div class="product-img">
+      <img src="{{jersey.jersey}}" alt="">
+    </div>
+    <div class="cart-text-container">
+      <div class="product-name">
+        <span>{{ jersey.name}}</span>
+      </div>
+
+    </div>
+    <div class="cart-btn" (click)="cartService.deleteJersey(index)">
+      <div class="product-price">
+        <div>{{jersey.price}}</div>
+      </div>
+      <mat-icon>delete</mat-icon>
+    </div>
+  </div>
+</div>
+
+<div class="checkout-btn">
+  <button>Checkout</button>
+</div>
