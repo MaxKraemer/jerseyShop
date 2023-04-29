@@ -10,7 +10,7 @@ import {MatDialog, MatDialogModule} from "@angular/material/dialog";
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
-export class RegisterComponent implements OnInit {
+export class RegisterComponent   {
 
   registerUser: FormGroup;
   firebaseErrorMessage: string;
@@ -39,6 +39,7 @@ export class RegisterComponent implements OnInit {
   };
 
   signUp() {
+    console.log(this.registerUser.value);
     if (this.registerUser.invalid)
       return;
     this.auth.signupUser(this.registerUser.value).then((result) => {

@@ -12,9 +12,11 @@ export class AuthService {
 
   constructor(private router: Router, private afAuth: AngularFireAuth) {
 
+
     this.userLoggedIn = false;
 
     this.afAuth.onAuthStateChanged((user) => {
+      console.log(user);
       if (user) {
         this.userLoggedIn = true;
       } else {
@@ -27,16 +29,25 @@ export class AuthService {
     return this.afAuth.signInWithEmailAndPassword(email, password)
       .then(() => {
         console.log('Auth Service: loginUser: success');
-        this.router.navigate(['userDashboard']);
+        this.router.navigate(['myDashboard']);
       })
       .catch();
+  }
+
+  userData(): any {
+    return this.afAuth.user;
+    console.log(this.afAuth.user);
   }
 
   signupUser(user: any): Promise<any> {
     return this.afAuth.createUserWithEmailAndPassword(user.email, user.password)
       .then((result) => {
+        result.user?.updateProfile({
+          displayName: user.firstName + ' ' + user.lastName,
+        })
         let emailLower = user.email.toLowerCase();
         result.user?.sendEmailVerification()
+        this.router.navigate(['myDashboard']);
       })
       .catch();
   }
