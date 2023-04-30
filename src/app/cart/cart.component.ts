@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {CartService} from "../service/cart.service";
 import {ProductsService} from "../service/products.service";
+import {AngularFirestore} from "@angular/fire/compat/firestore";
 
 @Component({
   selector: 'app-cart',
@@ -11,13 +12,13 @@ export class CartComponent {
 
   jerseys: any[] = [];
 
-  constructor(public cartService: CartService, public productService: ProductsService) {
+  constructor(public cartService: CartService, public productService: ProductsService, public angularFirestore: AngularFirestore) {
   }
 
   ngOnInit(): void {
-    this.jerseys = this.cartService.getItems();
-    console.log(this.jerseys, 'jerseys');
-
+    this.cartService.getItems();
+    this.jerseys = this.cartService.jerseys;
   }
+
 
 }

@@ -13,7 +13,6 @@ export class CartService {
 
   jerseys: any[] = [];
   public bagdeCount = 0;
-  public products: any[] = [];
 
   constructor(public productService: ProductsService, public firestore: Firestore, public angularFirestore: AngularFirestore) {
   }
@@ -26,25 +25,20 @@ export class CartService {
     const jersey = collection(this.firestore, 'jerseys');
     setDoc(doc(jersey), product);
     console.log(product);
-    this.updateCart();
   }
 
   getItems(): any {
     this.angularFirestore.collection('jerseys').valueChanges().subscribe((data) => {
-      this.products = data;
-      console.log(this.products, 'products');
+      this.jerseys = data;
+      console.log(this.jerseys, 'products');
     });
   }
 
   deleteJersey(index: number) {
-    this.jerseys.splice(index, 1);
-    this.bagdeCount = this.jerseys.length;
-    this.updateCart();
+    this.angularFirestore.collection('jerseys').doc(this.jerseys[index].id).delete();
   }
 
-  updateCart() {
-    this.bagdeCount = this.jerseys.length;
-  }
+
 
 
 }
