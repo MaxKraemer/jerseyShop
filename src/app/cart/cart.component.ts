@@ -9,9 +9,15 @@ import {ProductsService} from "../service/products.service";
 })
 export class CartComponent {
 
-  jerseys = this.cartService.getItems();
+  jerseys: any[] = [];
 
   constructor(public cartService: CartService, public productService: ProductsService) {
+  }
+
+  ngOnInit(): void {
+    this.jerseys = this.cartService.getItems();
+    console.log(this.jerseys, 'jerseys');
+
   }
 
 }

@@ -1,5 +1,9 @@
-import { Injectable } from '@angular/core';
+import {inject, Injectable} from '@angular/core';
 import {ProductsService} from "./products.service";
+import {AngularFirestore} from "@angular/fire/compat/firestore";
+import {collection, doc, Firestore, setDoc} from "@angular/fire/firestore";
+import '@firebase/firestore';
+import {Observable} from "rxjs";
 
 
 @Injectable({
@@ -11,12 +15,7 @@ export class CartService {
   public bagdeCount = 0;
   public products: any[] = [];
 
-  constructor(public productService: ProductsService) {
-    const storedJerseys = localStorage.getItem('jerseys');
-    if(storedJerseys) {
-      this.jerseys = JSON.parse(storedJerseys);
-      this.bagdeCount = this.jerseys.length;
-    }
+  constructor(public productService: ProductsService, public firestore: Firestore, public angularFirestore: AngularFirestore) {
   }
 
   badgeCount() {
@@ -24,13 +23,17 @@ export class CartService {
   }
 
   addToCart(product: any) {
-    this.jerseys.push(product);
-    this.jerseys = JSON.parse(JSON.stringify(this.jerseys));
+    const jersey = collection(this.firestore, 'jerseys');
+    setDoc(doc(jersey), product);
+    console.log(product);
     this.updateCart();
   }
 
-  getItems() {
-    return this.jerseys;
+  getItems(): any {
+    this.angularFirestore.collection('jerseys').valueChanges().subscribe((data) => {
+      this.products = data;
+      console.log(this.products, 'products');
+    });
   }
 
   deleteJersey(index: number) {
@@ -40,7 +43,7 @@ export class CartService {
   }
 
   updateCart() {
-    localStorage.setItem('jerseys', JSON.stringify(this.jerseys));
+    this.bagdeCount = this.jerseys.length;
   }
 
 
