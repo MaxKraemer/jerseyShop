@@ -46,25 +46,20 @@ export class CartService {
 
   addToCart(product: any) {
     const jersey = collection(this.firestore, 'jerseys');
-    console.log(product, 'product');
     setDoc(doc(jersey), product);
   }
 
   getItems(): any {
     this.angularFirestore.collection('jerseys').valueChanges().subscribe((data) => {
       this.jerseys = data;
-      console.log(this.jerseys, 'products');
     });
   }
 
   deleteJersey(id: string): any {
     this.angularFirestore.collection('jerseys').get().subscribe((data) => {
-      console.log('query snapshot', data.docs)
        data.docs.forEach((doc: any) => {
-         console.log('deleting?', doc.data().id, id);
          if(doc.data().id === id) {
            this.angularFirestore.collection('jerseys').doc(doc.id).delete();
-           console.log(doc.id, 'doc');
          }
         });
     });
