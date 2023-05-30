@@ -59,7 +59,9 @@ export class CartService {
     this.angularFirestore.collection('jerseys').get().subscribe((data) => {
        data.docs.forEach((doc: any) => {
          if(doc.data().id === id) {
-           this.angularFirestore.collection('jerseys').doc(doc.id).delete();
+           this.angularFirestore.collection('jerseys').doc(doc.id).delete().then(() => {
+             this.bagdeCount--;
+           });
          }
         });
     });
