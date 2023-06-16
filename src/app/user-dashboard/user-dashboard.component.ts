@@ -10,12 +10,12 @@ export class UserDashboardComponent {
 
   constructor(public auth: AuthService) {}
 
-  public userName: string | undefined;
+  public user: any;
 
   ngOnInit(): void {
     this.auth.userData().subscribe((user: any) => {
-      this.userName = user.displayName;
-      console.log(this.userName);
+      console.log(user,'user');
+      this.user = user;
     });
   }
 
