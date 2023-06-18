@@ -1,4 +1,19 @@
+{{user | json}}
 <div>
   <h1>Hello {{user.displayName}}</h1>
   <p>Here is your dashboard</p>
+  <p>Your Email is {{user.email}}</p>
 </div>
+
+<div class="item-container" *ngIf="jerseys">
+  <div class="cart-item" *ngFor="let jersey of cartService.jerseys; let index = index">
+    <div class="product-img">
+      <img src="{{jersey.jersey}}" alt="">
+    </div>
+    <div class="cart-text-container">
+      <div class="product-name">
+        <span>{{ jersey.name}}</span>
+      </div>
+    </div>
+</div>
+
