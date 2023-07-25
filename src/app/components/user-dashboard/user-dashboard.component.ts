@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import {AuthService} from "../service/auth.service";
-import { CartService } from '../service/cart.service';
-import { ProductsService } from '../service/products.service';
+import {AuthService} from "../../service/auth.service";
+import { CartService } from '../../service/cart.service';
+import { ProductsService } from '../../service/products.service';
 
 @Component({
   selector: 'app-user-dashboard',

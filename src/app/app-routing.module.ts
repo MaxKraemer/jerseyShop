@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import {ProductsComponent} from "./products/products.component";
+import {ProductsComponent} from "./components/products/products.component";
 import {AppComponent} from "./app.component";
-import {HomeComponent} from "./home/home.component";
-import {RegisterComponent} from "./register/register.component";
-import {UserDashboardComponent} from "./user-dashboard/user-dashboard.component";
-import {CartComponent} from "./cart/cart.component";
+import {HomeComponent} from "./components/home/home.component";
+import {RegisterComponent} from "./components/register/register.component";
+import {UserDashboardComponent} from "./components/user-dashboard/user-dashboard.component";
+import {CartComponent} from "./components/cart/cart.component";
 
 const routes: Routes = [
   { path: '', component: HomeComponent},

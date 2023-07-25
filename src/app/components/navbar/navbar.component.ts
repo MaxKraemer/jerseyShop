@@ -4,8 +4,8 @@ import { FormsModule} from "@angular/forms";
 import {MatDialog} from '@angular/material/dialog';
 import {RegisterComponent} from "../register/register.component";
 import {LoginComponent} from "../login/login.component";
-import {CartService} from "../service/cart.service";
-import {AuthService} from "../service/auth.service";
+import {CartService} from "../../service/cart.service";
+import {AuthService} from "../../service/auth.service";
 import firebase from "firebase/compat";
 import {AngularFireAuth} from "@angular/fire/compat/auth";
 

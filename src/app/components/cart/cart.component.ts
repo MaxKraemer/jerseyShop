@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import {CartService} from "../service/cart.service";
-import {ProductsService} from "../service/products.service";
+import {CartService} from "../../service/cart.service";
+import {ProductsService} from "../../service/products.service";
 import {AngularFirestore} from "@angular/fire/compat/firestore";
 
 @Component({

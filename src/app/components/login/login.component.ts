@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {AuthService} from "../service/auth.service";
+import {AuthService} from "../../service/auth.service";
 import {Router} from "@angular/router";
 import {AngularFireAuth} from "@angular/fire/compat/auth";
 import {MatDialog, MatDialogModule} from "@angular/material/dialog";
