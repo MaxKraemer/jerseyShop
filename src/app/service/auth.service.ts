@@ -12,7 +12,6 @@ export class AuthService {
 
   constructor(private router: Router, private afAuth: AngularFireAuth) {
 
-
     this.userLoggedIn = false;
 
     this.afAuth.onAuthStateChanged((user) => {
@@ -25,7 +24,7 @@ export class AuthService {
     });
   }
 
-  loginUser(email: string, password: string): Promise<any> {
+  public loginUser(email: string, password: string): Promise<any> {
     return this.afAuth.signInWithEmailAndPassword(email, password)
       .then(() => {
         console.log('Auth Service: loginUser: success');
@@ -34,12 +33,12 @@ export class AuthService {
       .catch();
   }
 
-  userData(): any {
+  public userData(): any {
     return this.afAuth.user;
     console.log(this.afAuth.user);
   }
 
-  signupUser(user: any): Promise<any> {
+  public signupUser(user: any): Promise<any> {
     return this.afAuth.createUserWithEmailAndPassword(user.email, user.password)
       .then((result) => {
         result.user?.updateProfile({
@@ -52,7 +51,7 @@ export class AuthService {
       .catch();
   }
 
-  logoutUser(): Promise<void> {
+  public logoutUser(): Promise<void> {
     return this.afAuth.signOut().then(() => {
       this.router.navigate(['/home']);
     });

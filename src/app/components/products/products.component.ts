@@ -15,8 +15,7 @@ export class ProductsComponent {
 
   addToCart(jerseys: any) {
     this.cart.addToCart(jerseys);
-    this.cart.badgeCount();
-
+    this.cart.getBadgeCount();
   }
 
 }
