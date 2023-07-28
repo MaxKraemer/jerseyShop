@@ -18,13 +18,11 @@ import {AngularFireAuth} from "@angular/fire/compat/auth";
 })
 export class NavbarComponent implements OnInit{
 
-  user: firebase.User | null | undefined;
-
+public user: firebase.User | null | undefined;
 
 
 constructor(public dialog: MatDialogModule, public matDialog: MatDialog, public cart: CartService, public auth: AuthService, private afAuth: AngularFireAuth)  {
   afAuth.authState.subscribe(user => this.user = user);
-  console.log(this.user);
 }
 
   ngOnInit(): void {
@@ -35,15 +33,15 @@ constructor(public dialog: MatDialogModule, public matDialog: MatDialog, public 
     return this.auth.userLoggedIn;
   }
 
-  openDialog() {
+  public openDialog() {
    this.matDialog.open(RegisterComponent);
   }
 
-  openLoginDialog() {
+  public openLoginDialog() {
     this.matDialog.open(LoginComponent);
   }
 
-  logout() {
+  public logout() {
     this.auth.logoutUser();
   }
 
