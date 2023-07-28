@@ -13,7 +13,8 @@ export class ProductsComponent {
 
   constructor(public products: ProductsService, public cart: CartService, private route: ActivatedRoute) {}
 
-  addToCart(jerseys: any) {
+  public addToCart(jerseys: any) {
+    console.log('addToCart', jerseys);
     this.cart.addToCart(jerseys);
     this.cart.getBadgeCount();
   }

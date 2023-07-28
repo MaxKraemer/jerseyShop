@@ -33,6 +33,7 @@ import { UserDashboardComponent } from './components/user-dashboard/user-dashboa
 import {AngularFireModule} from "@angular/fire/compat";
 import {MatInputModule} from "@angular/material/input";
 import { LoginComponent } from './components/login/login.component';
+import { CheckoutComponent } from './components/checkout/checkout.component';
 
 
 @NgModule({
@@ -52,6 +53,7 @@ import { LoginComponent } from './components/login/login.component';
     RegisterComponent,
     UserDashboardComponent,
     LoginComponent,
+    CheckoutComponent,
   ],
   imports: [
     BrowserModule,
