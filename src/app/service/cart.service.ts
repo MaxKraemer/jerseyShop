@@ -3,8 +3,9 @@ import {ProductsService} from "./products.service";
 import {AngularFirestore} from "@angular/fire/compat/firestore";
 import {collection, doc, Firestore, setDoc} from "@angular/fire/firestore";
 import '@firebase/firestore';
-import {Observable} from "rxjs";
+import {filter, map, Observable, switchMap, tap} from "rxjs";
 import { AuthService } from './auth.service';
+import { AppStateService } from './app-state.service';
 
 
 @Injectable({
@@ -14,57 +15,81 @@ export class CartService {
 
   jerseys: any[] = [];
   public bagdeCount = 0;
+  public userId: any;
 
-  constructor(public productService: ProductsService, public firestore: Firestore, public angularFirestore: AngularFirestore, public authService: AuthService) {
-    // check if database has items
+  constructor(public productService: ProductsService, 
+    private appData: AppStateService,
+    
+    public firestore: Firestore, public angularFirestore: AngularFirestore, public authService: AuthService) {
     this.angularFirestore.collection('allProducts').get().subscribe((data) => {
-      console.log('1 this.productService.jerseyImages', this.productService.jerseyImages);
+      this.appData.allProducts$$.next(data.docs.map((doc) => doc.data()));
     });
   }
 
-  badgeCount() {
+  public badgeCount() {
     this.bagdeCount++;
   }
 
-  // addToCart(product: any) {
-  //   const jersey = collection(this.firestore, 'jerseys');
-  //   setDoc(doc(jersey), product);
-  // }
-
-  // getItems(): any {
-  //   this.angularFirestore.collection('jerseys').valueChanges().subscribe((data) => {
-  //     this.jerseys = data;
-  //   });
-  // }
-
-  public addToCart(product: any) {
-    // Get the user ID from the AuthService
-    this.authService.userData().subscribe((userData: any) => {
+  public getUserId(): void{
+      this.appData.userData$$.subscribe((userData: any) => {
+        console.log('blubbi', userData);
+      this.userId = userData.uid;
+      console.log('this.userId', this.userId);
       if (userData && userData.uid) {
-        const jersey = collection(this.firestore, "jerseys");
-        const cartItem = { ...product, userId: userData.uid };
-
-        setDoc(doc(jersey), cartItem).then(() => {
-          console.log("Item added to cart:", cartItem);
-        });
-      } else {
-        console.log("User not logged in");
+        return userData.uid;
       }
     });
-}
+  }
+  public addToCart(product: any) {
+    const jersey = collection(this.firestore, 'cart');
+    this.appData.userData$$
+    .subscribe((userData: any | null) => {
+      if (userData && userData.uid) {
+        // logged in
+        setDoc(doc(jersey), {userId: userData.uid, productId: product.id});
+        console.log('userData.uid', userData.uid);
+        
+      } else {
+        // guest user not logged in
+        setDoc(doc(jersey), {productId: product.id, userId: -1});
+      }
+    });
+  }
 
+  public getItems(): any {
+    let productsInShoppingCart: any = [];
+    this.angularFirestore.collection('cart').valueChanges()
+    .pipe(
+      tap(res => {
+        productsInShoppingCart = res;
+        console.log('productsInShoppingCart', productsInShoppingCart);
+      }),
+      switchMap(() => this.appData.allProducts$$),
+      map(allProducts => {
+        return allProducts.filter((product: any) => {
+          return productsInShoppingCart.find((item: any) => {
+            return item.productId === product.id;
+          });
+        });
+      })
+    )
+    .subscribe((data) => {
+      this.jerseys = data;
+      this.appData.cartItems$$.next(data);
+      console.log('this.jerseys', this.jerseys);
+    });
+  }
 
-  deleteJersey(id: string): any {
-    this.angularFirestore.collection('jerseys').get().subscribe((data) => {
+  public deleteJersey(id: string): any {
+    this.angularFirestore.collection('cart').get().subscribe((data) => {
       data.docs.forEach((doc: any) => {
-         if(doc.data().id === id) {
-          this.angularFirestore.collection('jerseys').doc(doc.id).delete().then(() => {
+         if(doc.data().productId === id) {
+          this.angularFirestore.collection('cart').doc(doc.id).delete().then(() => {
              this.bagdeCount--;
           });
         }
       });
     });
   }
-
 
 }

@@ -21,11 +21,10 @@ export class UserDashboardComponent {
       console.log(user,'user');
       this.user = user;
     });
-    this.jerseyItems();
   }
 
   public jerseyItems(): void {
-    this.cartService.getItems();
+    this.cartService.addToCart('jerseys');
     this.jerseys = this.cartService.jerseys;
   }
 

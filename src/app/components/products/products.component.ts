@@ -14,9 +14,9 @@ export class ProductsComponent {
 
   constructor(public products: ProductsService, public cart: CartService, private route: ActivatedRoute) {}
 
-  public addToCart(jerseys: any) {
-    console.log('addToCart', jerseys);
-    this.cart.addToCart(jerseys);
+  public addToCart(product: any) {
+    console.log('addToCart', product);
+    this.cart.addToCart(product);
     this.cart.badgeCount();
   }
 
