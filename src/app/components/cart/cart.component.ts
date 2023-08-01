@@ -19,8 +19,8 @@ export class CartComponent {
   }
 
   ngOnInit(): void {
-    this.cartService.getItems();
-    this.cartService.getUserId();
+    // this.cartService.getItems();
+    // this.cartService.getUserId();
     this.appData.cartItems$$.subscribe(jerseys => this.jerseys = jerseys);
   }
 

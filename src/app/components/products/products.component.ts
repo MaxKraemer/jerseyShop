@@ -14,10 +14,13 @@ export class ProductsComponent {
 
   constructor(public products: ProductsService, public cart: CartService, private route: ActivatedRoute) {}
 
-  public addToCart(product: any) {
-    console.log('addToCart', product);
+  // public addToCart(product: any) { 
+  //   this.cart.addToCart(product);
+  //   this.cart.badgeCount();
+  // }
+
+   public addToCart(product: any) { 
     this.cart.addToCart(product);
-    this.cart.badgeCount();
-  }
+   }
 
 }

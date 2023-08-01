@@ -24,7 +24,7 @@ export class UserDashboardComponent {
   }
 
   public jerseyItems(): void {
-    this.cartService.addToCart('jerseys');
+    // this.cartService.addToCart('jerseys');
     this.jerseys = this.cartService.jerseys;
   }
 
