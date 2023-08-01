@@ -32,7 +32,6 @@ export class CartService {
 
   public getUserId(): void{
       this.appData.userData$$.subscribe((userData: any) => {
-        console.log('blubbi', userData);
       this.userId = userData.uid;
       console.log('this.userId', this.userId);
       if (userData && userData.uid) {
