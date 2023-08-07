@@ -31,22 +31,22 @@ export class CartService {
     }
   
     public addToCart(product: any) {
-      const jersey = collection(this.firestore, 'jerseys');
+      const jersey = collection(this.firestore, 'cart');
       setDoc(doc(jersey), product);
       this.bagdeCount++; // Increase the badge count when an item is added to the cart
     }
     
     public getItems(): any {
-      this.angularFirestore.collection('jerseys').valueChanges().subscribe((data) => {
+      this.angularFirestore.collection('cart').valueChanges().subscribe((data) => {
         this.jerseys = data;
       });
     }
     
     public deleteJersey(id: string): any {
-      this.angularFirestore.collection('jerseys').get().subscribe((data) => {
+      this.angularFirestore.collection('cart').get().subscribe((data) => {
         data.docs.forEach((doc: any) => {
           if (doc.data().id === id) {
-            this.angularFirestore.collection('jerseys').doc(doc.id).delete().then(() => {
+            this.angularFirestore.collection('cart').doc(doc.id).delete().then(() => {
               this.bagdeCount--; // Decrease the badge count when an item is deleted from the cart
             });
           }
