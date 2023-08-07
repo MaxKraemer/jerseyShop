@@ -7,6 +7,8 @@ import {filter, map, Observable, switchMap, tap} from "rxjs";
 import { AuthService } from './auth.service';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
 import { take } from 'rxjs/operators';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { DocumentReference } from '@firebase/firestore-types';
 
 
 @Injectable({
@@ -20,29 +22,42 @@ export class CartService {
 
   constructor(public productService: ProductsService,
 
-    public firestore: Firestore, public angularFirestore: AngularFirestore, public authService: AuthService, public angularFirebase: AngularFireDatabase) {
+    public firestore: Firestore, public angularFirestore: AngularFirestore, public authService: AuthService, public angularFirebase: AngularFireDatabase, private afAuth: AngularFireAuth) {
       this.angularFirestore.collection('allProducts').get().subscribe((data) => {
         console.log('1 this.productService.jerseyImages', this.productService.jerseyImages);
       });
     }
   
-    public getBadgeCount(): number {
-      return this.bagdeCount;
-    }
-  
-    public addToCart(product: any) {
-      const jersey = collection(this.firestore, 'cart');
-      setDoc(doc(jersey), product);
+    addToCart(product: any): void {
+      this.afAuth.user.subscribe((user) => {
+        if (user) {
+          const userCart = collection(this.firestore, 'users', user.uid, 'cart');
+          setDoc(doc(userCart), product);
+        }
+      });
       this.bagdeCount++; // Increase the badge count when an item is added to the cart
     }
-    
-    public getItems(): any {
-      this.angularFirestore.collection('cart').valueChanges().subscribe((data) => {
-        this.jerseys = data;
+  
+    clearCart(): void {
+      this.afAuth.user.subscribe((user) => {
+        if (user) {
+          const userCart = collection(this.firestore, 'users', user.uid, 'cart');
+          this.angularFirestore.collection('cart').get().subscribe((querySnapshot) => {
+            querySnapshot.docs.forEach((doc) => {
+              deleteDoc(doc.ref);
+            });
+          });
+        }
       });
+      this.bagdeCount = 0; // Reset the badge count to clear the cart
     }
     
-    public deleteJersey(id: string): any {
+  
+    getItems(): any {
+      return this.angularFirestore.collection('cart').valueChanges();
+    }
+  
+    deleteJersey(id: string): void {
       this.angularFirestore.collection('cart').get().subscribe((data) => {
         data.docs.forEach((doc: any) => {
           if (doc.data().id === id) {
@@ -53,4 +68,4 @@ export class CartService {
         });
       });
     }
-  }
+    }

@@ -18,7 +18,6 @@ export class ProductsComponent {
 
   public addToCart(product: any) { 
      this.cart.addToCart(product);
-     this.cart.getBadgeCount();
    }
 
 }
