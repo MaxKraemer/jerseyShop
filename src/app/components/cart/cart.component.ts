@@ -17,8 +17,10 @@ export class CartComponent {
   }
 
   ngOnInit(): void {
-    this.cartService.getItems();
-  
+   this.angularFirestore.collection('cart').get().subscribe((data: any) => {
+    this.jerseys = data;
+    console.log('this.jerseys', this.jerseys);
+    
+    });
   }
-
 }

@@ -33,6 +33,7 @@ export class CartService {
         if (user) {
           const userCart = collection(this.firestore, 'users', user.uid, 'cart');
           setDoc(doc(userCart), product);
+          console.log('product', product);
         }
       });
       this.bagdeCount++; // Increase the badge count when an item is added to the cart
@@ -47,15 +48,14 @@ export class CartService {
               deleteDoc(doc.ref);
             });
           });
+          console.log('userCart', userCart);
+          
         }
       });
       this.bagdeCount = 0; // Reset the badge count to clear the cart
     }
     
-  
-    getItems(): any {
-      return this.angularFirestore.collection('cart').valueChanges();
-    }
+
   
     deleteJersey(id: string): void {
       this.angularFirestore.collection('cart').get().subscribe((data) => {
