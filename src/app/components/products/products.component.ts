@@ -12,15 +12,13 @@ import { user } from '@angular/fire/auth';
 })
 export class ProductsComponent {
 
+  userId: any = localStorage.getItem('userId');
+
   constructor(public products: ProductsService, public cart: CartService, private route: ActivatedRoute) {}
 
-  // public addToCart(product: any) { 
-  //   this.cart.addToCart(product);
-  //   this.cart.badgeCount();
-  // }
-
-   public addToCart(product: any) { 
-    this.cart.addToCart(product);
+  public addToCart(product: any) { 
+     this.cart.addToCart(product);
+     this.cart.getBadgeCount();
    }
 
 }
