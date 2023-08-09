@@ -46,33 +46,19 @@ export class CartService {
       this.bagdeCount++;
     }
   
-    clearCart(): void {
+    deleteJersey(product: any): void {
       this.afAuth.user.subscribe((user) => {
         if (user) {
           const userCart = collection(this.firestore, 'users', user.uid, 'cart');
-          this.angularFirestore.collection('cart').get().subscribe((querySnapshot) => {
-            querySnapshot.docs.forEach((doc) => {
-              deleteDoc(doc.ref);
-            });
-          });
-          console.log('userCart', userCart);
-          
+          deleteDoc(doc(userCart, product));
+          console.log('product', product);
+  
+          // Emit the new product value to subscribers
+          this.productSubject.next(product);
         }
       });
-      this.bagdeCount = 0; // Reset the badge count to clear the cart
-    }
-    
-
   
-    deleteJersey(id: string): void {
-      this.angularFirestore.collection('cart').get().subscribe((data) => {
-        data.docs.forEach((doc: any) => {
-          if (doc.data().id === id) {
-            this.angularFirestore.collection('cart').doc(doc.id).delete().then(() => {
-              this.bagdeCount--; // Decrease the badge count when an item is deleted from the cart
-            });
-          }
-        });
-      });
-    }
+      // Decrease the badge count when an item is deleted from the cart
+      this.bagdeCount--;
+      }
     }
