@@ -43,6 +43,7 @@ constructor(public dialog: MatDialogModule, public matDialog: MatDialog, public 
 
   public logout() {
     this.auth.logoutUser();
+    this.cart.clearCart();
   }
 
 }

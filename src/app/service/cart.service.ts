@@ -3,7 +3,7 @@ import {ProductsService} from "./products.service";
 import {AngularFirestore} from "@angular/fire/compat/firestore";
 import {addDoc, collection, deleteDoc, doc, Firestore, setDoc} from "@angular/fire/firestore";
 import '@firebase/firestore';
-import {filter, map, Observable, switchMap, tap} from "rxjs";
+import {BehaviorSubject, filter, map, Observable, switchMap, tap} from "rxjs";
 import { AuthService } from './auth.service';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
 import { take } from 'rxjs/operators';
@@ -18,6 +18,8 @@ export class CartService {
 
   jerseys: any[] = [];
   public bagdeCount = 0;
+  private productSubject = new BehaviorSubject<any>(null);
+  product$ = this.productSubject.asObservable();
   // public userId: any;
 
   constructor(public productService: ProductsService,
@@ -34,9 +36,14 @@ export class CartService {
           const userCart = collection(this.firestore, 'users', user.uid, 'cart');
           setDoc(doc(userCart), product);
           console.log('product', product);
+  
+          // Emit the new product value to subscribers
+          this.productSubject.next(product);
         }
       });
-      this.bagdeCount++; // Increase the badge count when an item is added to the cart
+  
+      // Increase the badge count when an item is added to the cart
+      this.bagdeCount++;
     }
   
     clearCart(): void {

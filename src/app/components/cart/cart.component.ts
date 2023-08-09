@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import {CartService} from "../../service/cart.service";
 import {ProductsService} from "../../service/products.service";
 import {AngularFirestore} from "@angular/fire/compat/firestore";
+import { Firestore } from '@angular/fire/firestore';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-cart',
@@ -10,17 +12,17 @@ import {AngularFirestore} from "@angular/fire/compat/firestore";
 })
 export class CartComponent {
 
-  jerseys: any[] = [];
+  public productSubscription: Subscription | undefined;
+  jersey: any;
 
   constructor(public cartService: CartService, public productService: ProductsService, 
-    public angularFirestore: AngularFirestore) {
+    public angularFirestore: AngularFirestore, public firestore: Firestore) {
   }
 
   ngOnInit(): void {
-   this.angularFirestore.collection('cart').get().subscribe((data: any) => {
-    this.jerseys = data;
-    console.log('this.jerseys', this.jerseys);
-    
+    this.productSubscription = this.cartService.product$.subscribe((product) => {
+      this.jersey = product;
+      console.log('product', product);
     });
   }
 }

@@ -6,8 +6,8 @@
 <span>Back to Products</span>
 </div>
 
-<div class="item-container" *ngIf="jerseys">
-<div class="cart-item" *ngFor="let jersey of cartService.jerseys; let index = index">
+<div class="item-container" *ngIf="jersey">
+<div class="cart-item">
   <div class="product-img">
     <img src="{{jersey.jersey}}" alt="">
   </div>
