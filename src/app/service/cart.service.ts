@@ -46,11 +46,15 @@ export class CartService {
       this.bagdeCount++;
     }
   
-    deleteJerseyfromCart(product: any): void {
+    deleteJersey(product: any): void {
       this.afAuth.user.subscribe((user) => {
         if (user) {
           const userCart = collection(this.firestore, 'users', user.uid, 'cart');
           deleteDoc(doc(userCart, product));
+          console.log('product', product);
+  
+          // Emit the new product value to subscribers
+          this.productSubject.next(product);
         }
       });
   
