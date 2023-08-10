@@ -5,21 +5,20 @@
 <mat-icon class="back-icon">arrow_back</mat-icon>
 <span>Back to Products</span>
 </div>
-
-<div class="item-container" *ngIf="jersey">
-<div class="cart-item">
+<div class="item-container">
+<div class="cart-item" *ngFor="let item of jerseys">
   <div class="product-img">
-    <img src="{{jersey.jersey}}" alt="">
+    <img src="{{item.jersey}}" alt="">
   </div>
   <div class="cart-text-container">
     <div class="product-name">
-      <span>{{ jersey.name}}</span>
+      <span>{{ item.name}}</span>
     </div>
 
   </div>
-  <div class="cart-btn" (click)="cartService.deleteJersey(jersey.id)">
+  <div class="cart-btn" (click)="cartService.deleteJerseyfromCart(jerseys)">
     <div class="product-price">
-      <div>{{jersey.price}}</div>
+      <div>{{item.price}}</div>
     </div>
     <mat-icon>delete</mat-icon>
   </div>
