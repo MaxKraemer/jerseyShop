@@ -1,14 +1,15 @@
 import {inject, Injectable} from '@angular/core';
 import {ProductsService} from "./products.service";
 import {AngularFirestore} from "@angular/fire/compat/firestore";
-import {addDoc, collection, deleteDoc, doc, Firestore, setDoc} from "@angular/fire/firestore";
+import {addDoc, collection, deleteDoc, doc, Firestore, getDocs, setDoc} from "@angular/fire/firestore";
 import '@firebase/firestore';
-import {BehaviorSubject, filter, map, Observable, switchMap, tap} from "rxjs";
+import {BehaviorSubject, filter, map, Observable, Subject, switchMap, tap} from "rxjs";
 import { AuthService } from './auth.service';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
-import { take } from 'rxjs/operators';
+import { take, takeUntil } from 'rxjs/operators';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { DocumentReference } from '@firebase/firestore-types';
+import { query } from 'firebase/firestore';
 
 
 @Injectable({
@@ -20,6 +21,7 @@ export class CartService {
   public bagdeCount = 0;
   private productSubject = new BehaviorSubject<any>(null);
   product$ = this.productSubject.asObservable();
+  private unsubscribe$ = new Subject<void>();
   // public userId: any;
 
   constructor(public productService: ProductsService,
@@ -36,26 +38,36 @@ export class CartService {
           const userCart = collection(this.firestore, 'users', user.uid, 'cart');
           setDoc(doc(userCart), product);
           console.log('product', product);
-  
-          // Emit the new product value to subscribers
           this.productSubject.next(product);
         }
       });
-  
-      // Increase the badge count when an item is added to the cart
+
       this.bagdeCount++;
     }
 
-    deleteFromCart(product: any): void {
+    clearCart() {
       this.afAuth.user.subscribe((user) => {
         if (user) {
           const userCart = collection(this.firestore, 'users', user.uid, 'cart');
-          deleteDoc(doc(userCart, product.id)).then(() => {
-            console.log('product removed', product);
-            this.productSubject.next(product);
-            this.bagdeCount--;
-          });
+          const cartQuery = query(userCart);
+    
+          getDocs(cartQuery)
+            .then((querySnapshot) => {
+              const deletePromises: any[] = [];
+              querySnapshot.forEach((docSnapshot) => {
+                const deletePromise = deleteDoc(doc(userCart, docSnapshot.id));
+                console.log('deletePromise', deletePromise);
+                
+                deletePromises.push(deletePromise);
+              });
+    
+              return Promise.all(deletePromises);
+            })
+            .then(() => {
+              console.log('Cart cleared.');
+            })
         }
       });
-    } 
+    }
+    
   }
