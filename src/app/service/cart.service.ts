@@ -45,20 +45,17 @@ export class CartService {
       // Increase the badge count when an item is added to the cart
       this.bagdeCount++;
     }
-  
-    deleteJersey(product: any): void {
+
+    deleteFromCart(product: any): void {
       this.afAuth.user.subscribe((user) => {
         if (user) {
           const userCart = collection(this.firestore, 'users', user.uid, 'cart');
-          deleteDoc(doc(userCart, product));
-          console.log('product', product);
-  
-          // Emit the new product value to subscribers
-          this.productSubject.next(product);
+          deleteDoc(doc(userCart, product.id)).then(() => {
+            console.log('product removed', product);
+            this.productSubject.next(product);
+            this.bagdeCount--;
+          });
         }
       });
-  
-      // Decrease the badge count when an item is deleted from the cart
-      this.bagdeCount--;
-    }
-    }
+    } 
+  }

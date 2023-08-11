@@ -3,7 +3,7 @@ import {CartService} from "../../service/cart.service";
 import {ProductsService} from "../../service/products.service";
 import {AngularFirestore} from "@angular/fire/compat/firestore";
 import { collection, Firestore, getDocs, query } from '@angular/fire/firestore';
-import { Subscription } from 'rxjs';
+import { BehaviorSubject, Subscription } from 'rxjs';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { deleteDoc, doc } from 'firebase/firestore';
 
@@ -41,6 +41,7 @@ export class CartComponent {
       }
     });
   }
+
 
   ngOnDestroy(): void {
     if (this.productSubscription) {
