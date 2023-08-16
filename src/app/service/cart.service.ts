@@ -40,6 +40,11 @@ export class CartService {
           setDoc(doc(userCart), product);
           console.log('product', product);
           this.productSubject.next(product);
+        } else {
+          const guestCart = collection(this.firestore, 'guestCart');
+          setDoc(doc(guestCart), product);
+          console.log('product', product);
+          this.productSubject.next(product);
         }
       });
 
@@ -59,6 +64,19 @@ export class CartService {
               if (cartItem.id === item.id) {
                 console.log('cartItem.id', cartItem.id);
                 this.angularFirestore.collection(userCartPath).doc(doc.id).delete();
+                console.log('Deleted item with id', item.id);
+              }
+            });
+          });
+        } else {
+          const guestCartPath = `guestCart/`;
+          this.angularFirestore.collection(guestCartPath).get().subscribe((data) => {
+            data.docs.forEach((doc) => {
+              const cartItem: any = doc.data();
+              console.log('cartItem', cartItem);
+              if (cartItem.id === item.id) {
+                console.log('cartItem.id', cartItem.id);
+                this.angularFirestore.collection(guestCartPath).doc(doc.id).delete();
                 console.log('Deleted item with id', item.id);
               }
             });

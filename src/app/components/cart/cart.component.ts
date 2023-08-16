@@ -50,6 +50,21 @@ export class CartComponent {
           }).catch((error) => {
             console.error('Error fetching cart data:', error);
           });
+        } else {
+          const guestCart = collection(this.firestore, 'guestCart');
+          const cartQuery = query(guestCart);
+  
+          getDocs(cartQuery).then((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+              const jerseyData = doc.data();
+              console.log('this.jersey', jerseyData);
+              console.log('234567');
+              
+              this.jerseys.push(jerseyData); // Push the jersey data to the array
+            });
+          }).catch((error) => {
+            console.error('Error fetching cart data:', error);
+          });
         }
       })
     );
