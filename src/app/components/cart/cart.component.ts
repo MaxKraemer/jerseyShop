@@ -6,6 +6,7 @@ import { collection, Firestore, getDocs, query } from '@angular/fire/firestore';
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { deleteDoc, doc } from 'firebase/firestore';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cart',
@@ -20,7 +21,7 @@ export class CartComponent {
   private subscription = new Subscription();
 
   constructor(public cartService: CartService, public productService: ProductsService, 
-    public angularFirestore: AngularFirestore, public firestore: Firestore, public afAuth: AngularFireAuth) {
+    public angularFirestore: AngularFirestore, public firestore: Firestore, public afAuth: AngularFireAuth, private router: Router) {
   }
 
   ngOnInit(): void {
@@ -74,4 +75,8 @@ export class CartComponent {
     this.cartService.deleteItemFromCart(item);
     this.jerseys = this.jerseys.filter((jersey) => jersey.id !== item.id);
   }  
+
+  checkoutOrder(): void {
+    this.router.navigate(['/checkout']);
+  }
 }

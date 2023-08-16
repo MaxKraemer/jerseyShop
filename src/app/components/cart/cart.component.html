@@ -2,29 +2,28 @@
   <h3>Cart</h3>
 </div>
 <div class="product-title" routerLink="/products">
-<mat-icon class="back-icon">arrow_back</mat-icon>
-<span>Back to Products</span>
+  <mat-icon class="back-icon">arrow_back</mat-icon>
+  <span>Back to Products</span>
 </div>
 <div class="item-container">
-<div class="cart-item" *ngFor="let item of jerseys">
-  <div class="product-img">
-    <img src="{{item.jersey}}" alt="">
-  </div>
-  <div class="cart-text-container">
-    <div class="product-name">
-      <span>{{ item.name}}</span>
+  <div class="cart-item" *ngFor="let item of jerseys">
+    <div class="product-img">
+      <img src="{{ item.jersey }}" alt="" />
     </div>
-
-  </div>
-  <div class="cart-btn" (click)="this.deleteItemCart(item)">
-    <div class="product-price">
-      <div>{{item.price}}</div>
+    <div class="cart-text-container">
+      <div class="product-name">
+        <span>{{ item.name }}</span>
+      </div>
     </div>
-    <mat-icon>delete</mat-icon>
+    <div class="cart-btn" (click)="this.deleteItemCart(item)">
+      <div class="product-price">
+        <div>{{ item.price }}</div>
+      </div>
+      <mat-icon>delete</mat-icon>
+    </div>
   </div>
 </div>
-</div>
 
-<div class="checkout-btn">
-<button>Checkout</button>
+<div class="checkout-btn" (click)="checkoutOrder()">
+  <button>Checkout</button>
 </div>

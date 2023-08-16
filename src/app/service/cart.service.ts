@@ -83,6 +83,6 @@ export class CartService {
           });
         }
       });
-      this.bagdeCount++;
+      this.bagdeCount--;
     }
 }
