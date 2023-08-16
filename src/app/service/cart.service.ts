@@ -46,18 +46,21 @@ export class CartService {
       this.bagdeCount++;
     }
 
-    deleteItemFromCart(product: any): void {
-      console.log('product', product);
+    deleteItemFromCart(item: any): void {
+      console.log('item', item);
       this.afAuth.user.subscribe((user) => {
         console.log('user', user);
         if (user) {
           const userCartPath = `users/${user.uid}/cart/`;
           this.angularFirestore.collection(userCartPath).get().subscribe((data) => {
             data.docs.forEach((doc) => {
-              const jerseyData = doc.data();
-              console.log('jerseyData', jerseyData);
+              const cartItem: any = doc.data();
+              console.log('cartItem', cartItem);
+              if (cartItem.id === item.id) {
+                console.log('cartItem.id', cartItem.id);
                 this.angularFirestore.collection(userCartPath).doc(doc.id).delete();
-                console.log('doc.id', doc.id);
+                console.log('Deleted item with id', item.id);
+              }
             });
           });
         }

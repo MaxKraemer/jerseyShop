@@ -42,7 +42,6 @@ export class CartComponent {
     });
   }
 
-
   ngOnDestroy(): void {
     if (this.productSubscription) {
       this.productSubscription.unsubscribe();
