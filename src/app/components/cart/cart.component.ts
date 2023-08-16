@@ -17,34 +17,46 @@ export class CartComponent {
   public productSubscription: Subscription | undefined;
   jerseys: any[] = [];
   public bagdeCount = 0;
+  private subscription = new Subscription();
 
   constructor(public cartService: CartService, public productService: ProductsService, 
     public angularFirestore: AngularFirestore, public firestore: Firestore, public afAuth: AngularFireAuth) {
   }
 
   ngOnInit(): void {
-    this.afAuth.user.subscribe((user) => {
-      if (user) {
-        const userCart = collection(this.firestore, 'users', user.uid, 'cart');
-        const cartQuery = query(userCart);
-
-        getDocs(cartQuery).then((querySnapshot) => {
-          querySnapshot.forEach((doc) => {
-            const jerseyData = doc.data();
-            console.log('this.jersey', jerseyData);
-
-            this.jerseys.push(jerseyData); // Push the jersey data to the array
-          });
-        }).catch((error) => {
-          console.error('Error fetching cart data:', error);
-        });
-      }
-    });
+    this.getCartItems();
   }
 
   ngOnDestroy(): void {
-    if (this.productSubscription) {
-      this.productSubscription.unsubscribe();
-    }
+    this.subscription.unsubscribe();
   }
+
+  getCartItems(): void {
+    this.subscription.add(
+      this.afAuth.user.subscribe((user) => {
+        console.log('user', user);
+        if (user) {
+          const userCart = collection(this.firestore, 'users', user.uid, 'cart');
+          const cartQuery = query(userCart);
+  
+          getDocs(cartQuery).then((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+              const jerseyData = doc.data();
+              console.log('this.jersey', jerseyData);
+              console.log('234567');
+              
+              this.jerseys.push(jerseyData); // Push the jersey data to the array
+            });
+          }).catch((error) => {
+            console.error('Error fetching cart data:', error);
+          });
+        }
+      })
+    );
+  }
+
+  deleteItemCart(item: any): void {
+    this.cartService.deleteItemFromCart(item);
+    this.jerseys = this.jerseys.filter((jersey) => jersey.id !== item.id);
+  }  
 }

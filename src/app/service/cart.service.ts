@@ -65,5 +65,6 @@ export class CartService {
           });
         }
       });
+      this.bagdeCount++;
     }
 }
