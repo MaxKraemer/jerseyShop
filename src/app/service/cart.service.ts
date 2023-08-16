@@ -10,6 +10,7 @@ import { take, takeUntil } from 'rxjs/operators';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { DocumentReference } from '@firebase/firestore-types';
 import { query } from 'firebase/firestore';
+import { throwDialogContentAlreadyAttachedError } from '@angular/cdk/dialog';
 
 
 @Injectable({
@@ -45,29 +46,21 @@ export class CartService {
       this.bagdeCount++;
     }
 
-    clearCart() {
+    deleteItemFromCart(product: any): void {
+      console.log('product', product);
       this.afAuth.user.subscribe((user) => {
+        console.log('user', user);
         if (user) {
-          const userCart = collection(this.firestore, 'users', user.uid, 'cart');
-          const cartQuery = query(userCart);
-    
-          getDocs(cartQuery)
-            .then((querySnapshot) => {
-              const deletePromises: any[] = [];
-              querySnapshot.forEach((docSnapshot) => {
-                const deletePromise = deleteDoc(doc(userCart, docSnapshot.id));
-                console.log('deletePromise', deletePromise);
-                
-                deletePromises.push(deletePromise);
-              });
-    
-              return Promise.all(deletePromises);
-            })
-            .then(() => {
-              console.log('Cart cleared.');
-            })
+          const userCartPath = `users/${user.uid}/cart/`;
+          this.angularFirestore.collection(userCartPath).get().subscribe((data) => {
+            data.docs.forEach((doc) => {
+              const jerseyData = doc.data();
+              console.log('jerseyData', jerseyData);
+                this.angularFirestore.collection(userCartPath).doc(doc.id).delete();
+                console.log('doc.id', doc.id);
+            });
+          });
         }
       });
     }
-    
-  }
+}
