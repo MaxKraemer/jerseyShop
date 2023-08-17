@@ -3,9 +3,8 @@ import {CartService} from "../../service/cart.service";
 import {ProductsService} from "../../service/products.service";
 import {AngularFirestore} from "@angular/fire/compat/firestore";
 import { collection, Firestore, getDocs, query } from '@angular/fire/firestore';
-import { BehaviorSubject, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { deleteDoc, doc } from 'firebase/firestore';
 import { Router } from '@angular/router';
 
 @Component({
@@ -75,6 +74,7 @@ export class CartComponent {
     this.cartService.deleteItemFromCart(item);
     this.jerseys = this.jerseys.filter((jersey) => jersey.id !== item.id);
   }  
+
 
   checkoutOrder(): void {
     this.router.navigate(['/checkout']);
