@@ -16,11 +16,16 @@ export class CheckoutComponent implements OnInit {
   constructor(
     public angularFirestore: AngularFirestore,
     public firestore: Firestore,
-    public afAuth: AngularFireAuth
+    public afAuth: AngularFireAuth,
+    public auth: AuthService,
   ) {}
 
   ngOnInit(): void {
     this.getItemsFromCart();
+    this.auth.userData().subscribe((user: any) => {
+      console.log(user,'user');
+      this.user = user;
+    });
   }
 
   getItemsFromCart(): void {

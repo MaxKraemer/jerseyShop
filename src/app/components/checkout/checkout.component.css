@@ -1,8 +1,56 @@
+
+.headline {
+    padding-left: 200px;
+    padding-top: 50px;
+}
+
+h3 {
+    font-size: 40px;
+    font-family: 'Lato', sans-serif;
+}
+.product-title {
+    padding-left: 200px;
+    cursor: pointer;
+    font-size: 20px;
+    font-family: 'Lato', sans-serif;
+    margin-top: 20px;
+    margin-bottom: 50px;
+}
+
+.back-icon {
+    margin-right: 15px;
+    height: 20px;
+}
+
 .checkout-container {
     display: flex;
     justify-content: space-between;
-    margin-top: 50px;
-    margin-bottom: 50px;
-    margin-left: 50px;
-    margin-right: 50px;
+    margin: 0px 200px 0px 200px;
+    font-family: 'Lato', sans-serif;
+}
+
+.item-img img{
+    width: 200px;
+    height: 200px;
+}
+
+button {
+  background-color: #000000;
+  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 15px;
+  margin: 4px 2px;
+  cursor: pointer;
+  height: 50px;
+  width: 300px;
+  font-family: 'Lato', sans-serif;
+}
+
+.checkout-btn{
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 200px;
 }

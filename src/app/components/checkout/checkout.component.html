@@ -1,38 +1,47 @@
+<div class="headline">
+  <h3>Checkout</h3>
+</div>
+
 <div class="product-title" routerLink="/cart">
   <mat-icon class="back-icon">arrow_back</mat-icon>
   <span>Back to cart</span>
 </div>
 
 <div class="checkout-container">
-        <div class="user-data-container">
-            <div class="customer-title">
-                <h1>Customer Information</h1>
-            </div>
-            <div class="user-container">
-              <h1>Hello</h1>
-              <p>Here is your dashboard</p>
-              <p>Your Email is</p>
-            </div>
-          </div>
-    <div class="payment">
-        <div class="payment-container">
-            <div class="payment">
-              <h1>Payment</h1>
-              <p>Paypal</p>
-              <p>Credit Card</p>
-            </div>
-          </div>
+  <div class="user-data-container">
+    <div class="customer-title">
+      <h1>Customer Information</h1>
     </div>
-    <div class="order">
-      
-      <div class="order-container" *ngFor="let item of jerseyData">
-        <div class="order">
-          <div><img src="{{item.jersey}}" alt=""></div>
+    <div class="user-container">
+      <h1>Hello {{ user.displayName }}</h1>
+      <p>Your Email is {{user.email}}</p>
+    </div>
+  </div>
+  <div class="payment">
+    <div class="payment-container">
+      <div class="payment">
+        <h1>Payment</h1>
+        <p>Paypal</p>
+        <p>Credit Card</p>
+      </div>
+    </div>
+  </div>
+  <div class="order">
+    <h2>Your Order</h2>
+    <div class="order-container" *ngFor="let item of jerseyData">
+      <div class="order">
+        <div class="item-img"><img src="{{ item.jersey }}" alt="" /></div>
+        <div>
+          <span>{{ item.name }}</span>
+        </div>
+        <div>
+          <span>{{ item.price }}</span>
         </div>
       </div>
     </div>
+  </div>
 </div>
 
 <div class="checkout-btn">
-    <button>Checkout</button>
-  </div>
+  <button>Place Order</button>
+</div>
