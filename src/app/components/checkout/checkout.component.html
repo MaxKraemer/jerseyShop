@@ -21,8 +21,10 @@
     <div class="payment-container">
       <div class="payment">
         <h1>Payment</h1>
-        <p>Paypal</p>
-        <p>Credit Card</p>
+        <mat-radio-group aria-label="Select an option">
+          <mat-radio-button value="1"><img class="pay-logo" src="assets/img/icons8-credit-card-64.png"> Credit Card</mat-radio-button>
+          <mat-radio-button value="2"><img class="pay-logo" src="assets/img/icons8-paypal-48.png"> PayPal</mat-radio-button>
+        </mat-radio-group>
       </div>
     </div>
   </div>
@@ -35,7 +37,7 @@
           <span>{{ item.name }}</span>
         </div>
         <div>
-          <span>{{ item.price }}</span>
+          <span class="item-price">{{ item.price }}</span>
         </div>
       </div>
     </div>

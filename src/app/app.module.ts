@@ -34,6 +34,7 @@ import {AngularFireModule} from "@angular/fire/compat";
 import {MatInputModule} from "@angular/material/input";
 import { LoginComponent } from './components/login/login.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
+import {MatRadioModule} from '@angular/material/radio';
 
 
 @NgModule({
@@ -75,6 +76,7 @@ import { CheckoutComponent } from './components/checkout/checkout.component';
     MatSelectModule,
     MatSelectModule,
     MatInputModule,
+    MatRadioModule,
     AngularFireModule.initializeApp(environment.firebase),
 
   ],
