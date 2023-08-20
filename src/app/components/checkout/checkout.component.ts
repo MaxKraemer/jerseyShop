@@ -52,4 +52,14 @@ export class CheckoutComponent implements OnInit {
     });
   }
 
+  public placeOrder(): void {
+    this.afAuth.user.subscribe((user) => {
+      if (user) {
+        const userCart = collection(this.firestore, 'users', user.uid, 'cart');
+        const cartQuery = query(userCart);
+      }
+    })
+  }
+
+
 }
