@@ -3,10 +3,15 @@
     padding-top: 50px;
 }
 
+h1, h2 {
+    font-family: 'Lato', sans-serif;
+}
+
 h3 {
     font-size: 40px;
     font-family: 'Lato', sans-serif;
 }
+
 .product-title {
     padding-left: 200px;
     cursor: pointer;
@@ -29,9 +34,8 @@ h3 {
 }
 
 .item-img img{
-    width: 140px;
+    width: 150px;
     height: 150px;
-    padding-bottom: 20px;
 }
 
 .pay-logo {
@@ -39,7 +43,7 @@ h3 {
 }
 
 .item-price span {
-    padding-bottom: 20px;
+    padding-top: 20px;
 }
 
 button {
