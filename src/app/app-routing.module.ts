@@ -7,6 +7,7 @@ import {RegisterComponent} from "./components/register/register.component";
 import {UserDashboardComponent} from "./components/user-dashboard/user-dashboard.component";
 import {CartComponent} from "./components/cart/cart.component";
 import { CheckoutComponent } from './components/checkout/checkout.component';
+import { PlaceOrderComponent } from './components/place-order/place-order.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent},
@@ -16,6 +17,8 @@ const routes: Routes = [
   { path: 'myDashboard', component: UserDashboardComponent},
   { path: 'cart', component: CartComponent },
   { path: 'checkout', component: CheckoutComponent },
+  { path: 'place-order', component: PlaceOrderComponent }
+
 ];
 
 @NgModule({

@@ -35,6 +35,7 @@ import {MatInputModule} from "@angular/material/input";
 import { LoginComponent } from './components/login/login.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
 import {MatRadioModule} from '@angular/material/radio';
+import { PlaceOrderComponent } from './components/place-order/place-order.component';
 
 
 @NgModule({
@@ -55,6 +56,7 @@ import {MatRadioModule} from '@angular/material/radio';
     UserDashboardComponent,
     LoginComponent,
     CheckoutComponent,
+    PlaceOrderComponent,
   ],
   imports: [
     BrowserModule,

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { collection, Firestore, getDocs, query } from '@angular/fire/firestore';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/service/auth.service';
 import { CartService } from 'src/app/service/cart.service';
 
@@ -19,7 +20,8 @@ export class CheckoutComponent implements OnInit {
     public firestore: Firestore,
     public afAuth: AngularFireAuth,
     public auth: AuthService,
-    public cartService: CartService
+    public cartService: CartService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -55,19 +57,7 @@ export class CheckoutComponent implements OnInit {
   }
 
   public placeOrder(): void {
-    const order = {
-      user: this.user,
-      items: this.jerseyData,
-      date: new Date(),
-    };
-    this.angularFirestore
-      .collection('orders')
-      .add(order)
-      .then((res) => {
-        console.log('Order placed successfully!');
-        this.cartService.clearCart();
-      })
+    this.router.navigate(['/place-order']);
   }
-
 
 }
