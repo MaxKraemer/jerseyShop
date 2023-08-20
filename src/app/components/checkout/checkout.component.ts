@@ -3,6 +3,7 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { collection, Firestore, getDocs, query } from '@angular/fire/firestore';
 import { AuthService } from 'src/app/service/auth.service';
+import { CartService } from 'src/app/service/cart.service';
 
 @Component({
   selector: 'app-checkout',
@@ -18,6 +19,7 @@ export class CheckoutComponent implements OnInit {
     public firestore: Firestore,
     public afAuth: AngularFireAuth,
     public auth: AuthService,
+    public cartService: CartService
   ) {}
 
   ngOnInit(): void {
@@ -53,12 +55,18 @@ export class CheckoutComponent implements OnInit {
   }
 
   public placeOrder(): void {
-    this.afAuth.user.subscribe((user) => {
-      if (user) {
-        const userCart = collection(this.firestore, 'users', user.uid, 'cart');
-        const cartQuery = query(userCart);
-      }
-    })
+    const order = {
+      user: this.user,
+      items: this.jerseyData,
+      date: new Date(),
+    };
+    this.angularFirestore
+      .collection('orders')
+      .add(order)
+      .then((res) => {
+        console.log('Order placed successfully!');
+        this.cartService.clearCart();
+      })
   }
 
 

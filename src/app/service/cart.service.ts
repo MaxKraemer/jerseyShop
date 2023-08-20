@@ -85,4 +85,24 @@ export class CartService {
       });
       this.bagdeCount--;
     }
+
+    clearCart(): void {
+      this.afAuth.user.subscribe((user) => {
+        if (user) {
+          const userCartPath = `users/${user.uid}/cart/`;
+          this.angularFirestore.collection(userCartPath).get().subscribe((data) => {
+            data.docs.forEach((doc) => {
+              this.angularFirestore.collection(userCartPath).doc(doc.id).delete();
+            });
+          });
+        } else {
+          const guestCartPath = `guestCart/`;
+          this.angularFirestore.collection(guestCartPath).get().subscribe((data) => {
+            data.docs.forEach((doc) => {
+              this.angularFirestore.collection(guestCartPath).doc(doc.id).delete();
+            });
+          });
+        }
+      });
+    }
 }
