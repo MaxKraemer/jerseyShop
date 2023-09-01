@@ -40,6 +40,10 @@ export class CartService {
           setDoc(doc(userCart), product);
           console.log('product', product);
           this.productSubject.next(product);
+          const userOrders = collection(this.firestore, 'users', user.uid, 'orders');
+          setDoc(doc(userOrders), product);
+          console.log('product', product);
+          this.productSubject.next(product);
         } else {
           const guestCart = collection(this.firestore, 'guestCart');
           setDoc(doc(guestCart), product);

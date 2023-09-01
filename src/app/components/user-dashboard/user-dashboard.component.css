@@ -9,6 +9,7 @@ h2, h1 {
     font-family: 'Lato', sans-serif;
 }
 
-.user-container {
-   
-}
+.item-img img {
+    width: 150px;
+    height: 150px;
+  }
