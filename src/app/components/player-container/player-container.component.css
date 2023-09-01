@@ -24,3 +24,18 @@ img {
   padding-bottom: 100px;
   font-family: 'Lato', sans-serif;
 }
+
+@media screen and (max-width: 768px) {
+  .player-container {
+    padding-top: 50px;
+    display: grid;
+    flex-direction: column;
+    height: 200%;
+  }
+  img {
+    margin-bottom: 20px;
+  }
+  .player-names {
+    display: none;
+  }
+}

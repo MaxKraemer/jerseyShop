@@ -59,6 +59,14 @@
   }
 }
 
+.logo img {
+  height: 100px;
+  width: 100px;
+  position: relative;
+  top: -50px;
+  left: 40%;
+}
+
 .footer-dark .item.text p {
   opacity:0.6;
   margin-bottom:0;

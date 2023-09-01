@@ -36,3 +36,23 @@ img {
   cursor: pointer;
 }
 
+@media screen and (max-width: 768px) {
+  .sec1 {
+    height: 100%;
+  }
+  .web-headline {
+    font-size: 2rem;
+  }
+  .popular-jersey-title h3 {
+    font-size: 30px;
+  }
+  .jersey-container {
+    display: grid;
+    flex-direction: column;
+  }
+  img {
+    margin-bottom: 40px;
+  }
+  
+}
+
