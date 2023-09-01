@@ -98,7 +98,15 @@ nav ul li a.active {
   line-height: 30px;
 }
 
+span{
+  display: none;
+}
+
   @media screen and (max-width: 768px) {
+
+    span{
+      display: block;
+    }
 
     nav {
       position: inherit;
