@@ -1,9 +1,24 @@
 <div class="user-data-container">
-  <div class="user-container">
-    <h1>Hello {{user.displayName}}</h1>
-    <p>Here is your dashboard</p>
-    <p>Your Email is{{user.email}}</p>
+  <h1>Hello {{ user.displayName }} here is your dashboard:</h1>
+  <p>Your Email is {{ user.email }}</p>
+  <div class="order-container">
+    <div class="order-title">
+      <h2>Your Orders</h2>
+    </div>
+
+    <div class="order-items">
+      <div class="order-container" *ngFor="let item of jerseyData">
+        <div class="order">
+          <div class="item-img"><img src="{{ item.jersey }}" alt="" /></div>
+          <div>
+            <span>{{ item.name }}</span>
+          </div>
+          <div>
+            <span class="item-price">{{ item.price }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    
   </div>
 </div>
-
-

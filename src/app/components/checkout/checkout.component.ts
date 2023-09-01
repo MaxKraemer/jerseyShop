@@ -58,6 +58,7 @@ export class CheckoutComponent implements OnInit {
 
   public placeOrder(): void {
     this.router.navigate(['/place-order']);
+    this.cartService.clearCart();
   }
 
 }
