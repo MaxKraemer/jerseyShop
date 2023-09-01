@@ -52,5 +52,39 @@ button {
     padding-left: 50px;
     padding-right: 50px;
   }
+
+@media screen and (max-width: 768px) {
+  .headline {
+    padding-left: 0;
+    padding-top: 50px;
+    text-align: center;
+  }
+
+  .product-information {
+    font-size: 20px;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+
+  .product-price {
+    margin-top: 20px;
+    margin-bottom: 10px;
+  }
+  
+  .product-name {
+    margin-bottom: 10px;
+  }
+
+  .cart-btn {
+    display: flex;
+    justify-content: center;
+  }
+
+  button {
+    height: 40px;
+    width: 200px;
+  }
+  
+}
 }
 
