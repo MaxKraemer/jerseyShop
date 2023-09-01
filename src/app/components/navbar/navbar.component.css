@@ -111,6 +111,12 @@ nav ul li a.active {
       transition: .3s;
     }
 
+    img {
+      position: absolute;
+      top: 15px;
+      width: 65px;
+    }
+
     nav .logo {
       height: 80px;
       font-size: 28px;
@@ -120,6 +126,14 @@ nav ul li a.active {
       float: left;
       color: #fff;
       cursor: pointer;
+    }
+
+    nav h3{
+      margin-left: 110px;
+      font-size: 25px;
+      margin-top: 5px;
+      font-family: 'Lato', sans-serif;
+    
     }
 
     nav ul {
@@ -183,6 +197,6 @@ nav ul li a.active {
       font-size: 40px;
       display: flex;
       justify-content: end;
-      padding: 20px 0 20px 0;
+      padding: 20px 20px 20px 0;
     }
   }
