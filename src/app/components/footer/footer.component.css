@@ -59,13 +59,7 @@
   }
 }
 
-.logo img {
-  height: 100px;
-  width: 100px;
-  position: relative;
-  top: -50px;
-  left: 40%;
-}
+
 
 .footer-dark .item.text p {
   opacity:0.6;
@@ -80,6 +74,14 @@
   .footer-dark .item.social {
     text-align:center;
     margin-top:20px;
+  }
+
+  .logo img {
+    height: 100px;
+    width: 100px;
+    position: relative;
+    top: -50px;
+    left: 40%;
   }
 }
 
@@ -96,6 +98,8 @@
   color:#fff;
   opacity:0.75;
 }
+
+
 
 .footer-dark .item.social > a:hover {
   opacity:0.9;

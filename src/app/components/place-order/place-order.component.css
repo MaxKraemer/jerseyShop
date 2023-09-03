@@ -30,3 +30,20 @@
     font-family: 'Lato', sans-serif;
 
   }
+
+  @media screen and (max-width: 768px) {
+    .product-title {
+      padding-left: 20px;
+      cursor: pointer;
+      font-size: 20px;
+      font-family: 'Lato', sans-serif;
+      margin-top: 50px;
+    }
+
+    .place-order-container{
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      padding-top: 50%;
+    }
+  }
