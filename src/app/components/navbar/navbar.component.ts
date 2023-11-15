@@ -19,14 +19,19 @@ import {AngularFireAuth} from "@angular/fire/compat/auth";
 export class NavbarComponent implements OnInit{
 
 public user: firebase.User | null | undefined;
+isSidebarOpen: boolean = false;
 
 
-constructor(public dialog: MatDialogModule, public matDialog: MatDialog, public cart: CartService, public auth: AuthService, private afAuth: AngularFireAuth)  {
+constructor(public matDialog: MatDialog, public matDialog: MatDialog, public cart: CartService, public auth: AuthService, private afAuth: AngularFireAuth)  {
   afAuth.authState.subscribe(user => this.user = user);
 }
 
   ngOnInit(): void {
 
+  }
+
+  public toggleSidebar(): void {
+    this.isSidebarOpen = !this.isSidebarOpen;
   }
 
   public get userLoggedIn() {

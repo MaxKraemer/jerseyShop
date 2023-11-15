@@ -1,11 +1,11 @@
 export const environment = {
   firebase: {
-    projectId: 'webshop-fdaec',
-    appId: '1:173185739847:web:ceb4890059930aa43fd562',
-    databaseURL: 'https://webshop-fdaec-default-rtdb.europe-west1.firebasedatabase.app',
-    storageBucket: 'webshop-fdaec.appspot.com',
-    locationId: 'europe-west',
-    apiKey: 'AIzaSyB1sOsW6SVg7lMXQvZRhOl1zy8Fbt6muzs',
-    authDomain: 'webshop-fdaec.firebaseapp.com',
-    messagingSenderId: '173185739847',
-  },};
+    apiKey: "AIzaSyDqfKJikzqc7ECu3oPjpPFMdi2k79d7H5E",
+    authDomain: "disneyplus-e20b2.firebaseapp.com",
+    projectId: "disneyplus-e20b2",
+    storageBucket: "disneyplus-e20b2.appspot.com",
+    messagingSenderId: "642062578660",
+    appId: "1:642062578660:web:0dbdcd72c92382fc4c4df1",
+    measurementId: "G-XMGS7RSDFN"
+  }
+  ,};
