@@ -22,7 +22,7 @@ public user: firebase.User | null | undefined;
 isSidebarOpen: boolean = false;
 
 
-constructor(public matDialog: MatDialog, public matDialog: MatDialog, public cart: CartService, public auth: AuthService, private afAuth: AngularFireAuth)  {
+constructor(public matDialog: MatDialog, public cart: CartService, public auth: AuthService, private afAuth: AngularFireAuth)  {
   afAuth.authState.subscribe(user => this.user = user);
 }
 
