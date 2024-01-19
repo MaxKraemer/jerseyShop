@@ -33,24 +33,21 @@ export class UserDashboardComponent {
   }
 
   getItemsfromCart(): void {
-    this.afAuth.user.subscribe((user) => {
-      if (user) {
-        const userCart = collection(
-          this.firestore,
-          'users',
-          user.uid,
-          'orders'
-        );
-        const cartQuery = query(userCart);
-        getDocs(cartQuery).then((querySnapshot) => {
-          this.jerseyData = []; // Clear the array before adding items
-          querySnapshot.forEach((doc) => {
-            this.jerseyData.push(doc.data()); // Add each item to the array
-          });
-        });
-      }
-    });
-  }
+  this.afAuth.user.subscribe((user) => {
+    if (user) {
+      const userCart = collection(
+        this.firestore,
+        'users',
+        user.uid,
+        'orders'
+      );
+      const cartQuery = query(userCart);
+      getDocs(cartQuery).then((querySnapshot) => {
+        this.jerseyData = querySnapshot.docs.map(doc => doc.data());
+      });
+    }
+  });
+}
 
   public jerseyItems(): void {
     this.jerseys = this.cartService.jerseys;

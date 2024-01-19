@@ -38,16 +38,13 @@ export class CartService {
         if (user) {
           const userCart = collection(this.firestore, 'users', user.uid, 'cart');
           setDoc(doc(userCart), product);
-          console.log('product', product);
           this.productSubject.next(product);
           const userOrders = collection(this.firestore, 'users', user.uid, 'orders');
           setDoc(doc(userOrders), product);
-          console.log('product', product);
           this.productSubject.next(product);
         } else {
           const guestCart = collection(this.firestore, 'guestCart');
           setDoc(doc(guestCart), product);
-          console.log('product', product);
           this.productSubject.next(product);
         }
       });
@@ -64,9 +61,7 @@ export class CartService {
           this.angularFirestore.collection(userCartPath).get().subscribe((data) => {
             data.docs.forEach((doc) => {
               const cartItem: any = doc.data();
-              console.log('cartItem', cartItem);
               if (cartItem.id === item.id) {
-                console.log('cartItem.id', cartItem.id);
                 this.angularFirestore.collection(userCartPath).doc(doc.id).delete();
                 console.log('Deleted item with id', item.id);
               }
@@ -79,9 +74,7 @@ export class CartService {
               const cartItem: any = doc.data();
               console.log('cartItem', cartItem);
               if (cartItem.id === item.id) {
-                console.log('cartItem.id', cartItem.id);
                 this.angularFirestore.collection(guestCartPath).doc(doc.id).delete();
-                console.log('Deleted item with id', item.id);
               }
             });
           });
@@ -94,6 +87,26 @@ export class CartService {
       this.afAuth.user.subscribe((user) => {
         if (user) {
           const userCartPath = `users/${user.uid}/cart/`;
+          this.angularFirestore.collection(userCartPath).get().subscribe((data) => {
+            data.docs.forEach((doc) => {
+              this.angularFirestore.collection(userCartPath).doc(doc.id).delete();
+            });
+          });
+        } else {
+          const guestCartPath = `guestCart/`;
+          this.angularFirestore.collection(guestCartPath).get().subscribe((data) => {
+            data.docs.forEach((doc) => {
+              this.angularFirestore.collection(guestCartPath).doc(doc.id).delete();
+            });
+          });
+        }
+      });
+    }
+
+    showOrder(): void {
+      this.afAuth.user.subscribe((user) => {
+        if (user) {
+          const userCartPath = `users/${user.uid}/orders/`;
           this.angularFirestore.collection(userCartPath).get().subscribe((data) => {
             data.docs.forEach((doc) => {
               this.angularFirestore.collection(userCartPath).doc(doc.id).delete();
