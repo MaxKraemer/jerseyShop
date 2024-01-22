@@ -5,6 +5,7 @@ import { collection, Firestore, getDocs, query } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/service/auth.service';
 import { CartService } from 'src/app/service/cart.service';
+import { SharedService } from 'src/app/service/shared.service';
 
 @Component({
   selector: 'app-checkout',
@@ -21,7 +22,8 @@ export class CheckoutComponent implements OnInit {
     public afAuth: AngularFireAuth,
     public auth: AuthService,
     public cartService: CartService,
-    private router: Router
+    private router: Router,
+    private sharedService: SharedService
   ) {}
 
   ngOnInit(): void {
@@ -59,7 +61,7 @@ export class CheckoutComponent implements OnInit {
   public placeOrder(): void {
     this.router.navigate(['/place-order']);
     this.cartService.clearCart();
-
+    this.sharedService.orderPlaced(true);
   }
 
 }

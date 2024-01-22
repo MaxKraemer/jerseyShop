@@ -4,6 +4,7 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { collection, Firestore, getDocs, query } from '@angular/fire/firestore';
 import { AuthService } from 'src/app/service/auth.service';
 import { CartService } from 'src/app/service/cart.service';
+import { SharedService } from 'src/app/service/shared.service';
 
 @Component({
   selector: 'app-user-dashboard',
@@ -16,12 +17,14 @@ export class UserDashboardComponent {
     public firestore: Firestore,
     public afAuth: AngularFireAuth,
     public auth: AuthService,
-    public cartService: CartService
+    public cartService: CartService,
+    private sharedService: SharedService
   ) {}
 
   public user: any;
   public jerseys: any[] = [];
-  public jerseyData: any[] = []; // Initialize as an array
+  public jerseyData: any[] = [];
+  displayJerseyData: boolean = false;
   public userCart: string | null | undefined;
 
   ngOnInit(): void {
@@ -33,20 +36,20 @@ export class UserDashboardComponent {
   }
 
   getItemsfromCart(): void {
-  this.afAuth.user.subscribe((user) => {
-    if (user) {
-      const userCart = collection(
-        this.firestore,
-        'users',
-        user.uid,
-        'orders'
-      );
-      const cartQuery = query(userCart);
-      getDocs(cartQuery).then((querySnapshot) => {
-        this.jerseyData = querySnapshot.docs.map(doc => doc.data());
-      });
-    }
-  });
+    this.afAuth.user.subscribe((user) => {
+      if (user) {
+        const userCart = collection(
+          this.firestore,
+          'users',
+          user.uid,
+          'orders'
+        );
+        const cartQuery = query(userCart);
+        getDocs(cartQuery).then((querySnapshot) => {
+          this.jerseyData = querySnapshot.docs.map(doc => doc.data());
+        });
+      }
+    });
 }
 
   public jerseyItems(): void {
