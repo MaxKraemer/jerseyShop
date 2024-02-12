@@ -34,7 +34,6 @@ export class CartComponent {
   getCartItems(): void {
     this.subscription.add(
       this.afAuth.user.subscribe((user) => {
-        console.log('user', user);
         if (user) {
           const userCart = collection(this.firestore, 'users', user.uid, 'cart');
           const cartQuery = query(userCart);
@@ -42,9 +41,6 @@ export class CartComponent {
           getDocs(cartQuery).then((querySnapshot) => {
             querySnapshot.forEach((doc) => {
               const jerseyData = doc.data();
-              console.log('this.jersey', jerseyData);
-              console.log('234567');
-              
               this.jerseys.push(jerseyData); // Push the jersey data to the array
             });
           }).catch((error) => {
@@ -57,9 +53,6 @@ export class CartComponent {
           getDocs(cartQuery).then((querySnapshot) => {
             querySnapshot.forEach((doc) => {
               const jerseyData = doc.data();
-              console.log('this.jersey', jerseyData);
-              console.log('234567');
-              
               this.jerseys.push(jerseyData); // Push the jersey data to the array
             });
           }).catch((error) => {
@@ -74,7 +67,6 @@ export class CartComponent {
     this.cartService.deleteItemFromCart(item);
     this.jerseys = this.jerseys.filter((jersey) => jersey.id !== item.id);
   }  
-
 
   checkoutOrder(): void {
     this.router.navigate(['/checkout']);
