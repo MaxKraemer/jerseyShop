@@ -13,8 +13,9 @@ import { SharedService } from 'src/app/service/shared.service';
   styleUrls: ['./checkout.component.css'],
 })
 export class CheckoutComponent implements OnInit {
+  
   public user: any;
-  public jerseyData: any[] = []; // Initialize as an array
+  public jerseyData: any[] = [];
 
   constructor(
     public angularFirestore: AngularFirestore,

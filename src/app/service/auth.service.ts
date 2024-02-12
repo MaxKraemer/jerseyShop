@@ -11,8 +11,6 @@ export class AuthService {
 
   userLoggedIn: boolean;
 
-  
-
   constructor(private router: Router, private afAuth: AngularFireAuth) {
 
     this.userLoggedIn = false;
@@ -40,7 +38,6 @@ export class AuthService {
 
   public userData(): any {
     return this.afAuth.user;
-    console.log(this.afAuth.user);
   }
 
   public signupUser(user: any): Promise<any> {
